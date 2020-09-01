@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog id="createAndEditDialog" title="{i18n>ConnectBotToScopeVisio}" contentWidth="40rem">
+		<form:SimpleForm editable="false"
+			layout="ResponsiveGridLayout" labelSpanXL="4"
+			labelSpanL="4" labelSpanM="12" labelSpanS="12"
+			adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0"
+			emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
+			singleContainerFullSize="true">
+			<form:content>
+				<Label text="{i18n>Bot}" />
+				<ComboBox id="matrixIdentity" items="{MatrixConnector>/Identitys}">
+					<core:Item key="@{MatrixConnector>Username}:{MatrixConnector>Domain}" text="@{MatrixConnector>Username}:{MatrixConnector>Domain}" />
+				</ComboBox>
+			</form:content>
+		</form:SimpleForm>
+		<beginButton>
+			<Button type="Reject" text="{i18n>cancel}" press="onCancel" />
+		</beginButton>
+		<endButton>
+			<Button type="Accept" text="{i18n>ConnectScopeVisio}" press="onConnectScopeVisio" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

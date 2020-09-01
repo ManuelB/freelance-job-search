@@ -1,0 +1,94 @@
+<mvc:View displayBlock="true"
+	controllerName="incentergy.scopevisiochatbot.view.Detail" height="100%"
+	xmlns="sap.uxap" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m"
+	xmlns:f="sap.f" xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form" xmlns:base="incentergy.base">
+
+	<ObjectPageLayout id="ObjectPageLayout"
+		showTitleInHeaderContent="true" alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false" headerContentPinnable="true"
+		isChildPage="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{Username} {Domain}" wrapping="true"
+						class="sapUiSmallMarginEnd" />
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true"
+						alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true"
+							alignItems="Center" class="sapUiTinyMarginEnd">
+							<m:Title text="{Username} {Domain}" wrapping="true"
+								class="sapUiTinyMarginEnd" />
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<navigationActions>
+					<m:OverflowToolbarButton type="Transparent"
+						icon="sap-icon://full-screen" press="handleFullScreen"
+						tooltip="Enter Full Screen Mode"
+						visible="{= ${Layout>/actionButtonsInfo/midColumn/fullScreen} !== null }" />
+					<m:OverflowToolbarButton type="Transparent"
+						icon="sap-icon://exit-full-screen" press="handleExitFullScreen"
+						tooltip="Exit Full Screen Mode"
+						visible="{= ${Layout>/actionButtonsInfo/midColumn/exitFullScreen} !== null }" />
+					<m:OverflowToolbarButton type="Transparent"
+						icon="sap-icon://decline" press="handleClose"
+						tooltip="Close column"
+						visible="{= ${Layout>/actionButtonsInfo/midColumn/closeColumn} !== null }" />
+				</navigationActions>
+
+				<actions>
+					<m:Button text="{i18n>Edit}" press="onEdit" type="Emphasized" />
+					<m:Button text="{i18n>Delete}" press="onDelete" type="Transparent" />
+				</actions>
+
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection title="{i18n>GeneralInformation}">
+				<subSections>
+					<ObjectPageSubSection title="{i18n>Identity}">
+						<blocks>
+							<form:SimpleForm editable="false"
+								layout="ResponsiveGridLayout" title="" labelSpanXL="4"
+								labelSpanL="4" labelSpanM="12" labelSpanS="12"
+								adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+								emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+								columnsM="2" singleContainerFullSize="false">
+								<form:content>
+									<core:Title text="{i18n>GeneralData}" />
+									<m:Label text="{i18n>AccessToken}" />
+									<m:Text text="{AccessToken}" />
+									<m:Label text="{i18n>RefreshToken}" />
+									<m:Text text="{RefreshToken}" />
+									<m:Label text="{i18n>ExpiresIn}" />
+									<m:Text text="{ExpiresIn}" />
+									<m:Label text="{i18n>Owner}" />
+									<m:Text text="{Owner}" />
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>Extensions}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<base:UIExtension
+								name="incentergy.oauthscopevisiotoken.detail" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

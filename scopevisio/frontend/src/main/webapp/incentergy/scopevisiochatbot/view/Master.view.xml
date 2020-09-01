@@ -1,0 +1,54 @@
+<mvc:View displayBlock="true"
+	controllerName="incentergy.scopevisiochatbot.view.Master" height="100%"
+	xmlns="sap.m" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc">
+	<f:DynamicPage id="dynamicPageId"
+		toggleHeaderOnTitleClick="false">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>OAuthScopeVisioTokens}" />
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<Table id="identityTable" inset="false"
+				items="{
+						path: '/OAuthScopeVisioTokens'
+					}"
+				class="sapFDynamicPageAlignContent" width="auto">
+				<headerToolbar>
+					<OverflowToolbar>
+						<ToolbarSpacer />
+						<SearchField search="onSearch" width="17.5rem" />
+						<OverflowToolbarButton
+							icon="sap-icon://add-competence" type="Transparent" press="onAdd" />
+						<OverflowToolbarButton icon="sap-icon://add"
+							type="Transparent" press="onAdd" />
+						<OverflowToolbarButton
+							icon="sap-icon://sort" type="Transparent" press="onSort" />
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>AccessToken}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>BotIdentity}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation"
+						press="onListItemPress">
+						<cells>
+							<Text text="{AccessToken}" />
+							<Text text="{BotIdentity}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,146 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "incentergy.matrixconnector",
+		"type": "application",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"Data.svc": {
+				"uri": "../../../matrix-connector-backend/Data.svc?sap-context-token=1",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_fiori_3"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "incentergy.matrixconnector.view.App",
+			"type": "XML",
+			"async": true
+		},
+		"dependencies": {
+			"minUI5Version": "1.68.1",
+			"libs": {
+				"sap.m": {
+				},
+				"sap.f": {
+				},
+				"sap.uxap": {
+				},
+				"sap.tnt": {
+				},
+				"sap.ui.unified": {
+				},
+				"sap.ui.layout": {
+				}
+			}
+		},
+		"config": {
+			"fullWidth": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "incentergy.matrixconnector.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "Data.svc",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			}
+		},
+			"routing": {
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"viewType": "XML",
+				"viewPath": "incentergy.matrixconnector.view",
+				"controlId": "fcl",
+				"transition": "slide",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "matrixconnector/:layout:",
+					"name": "master",
+					"navigationItem": {
+						"id": "1db12ecd-ce18-4b4d-90b4-fe26cdc665a9",
+						"topLevelItem": true,
+						"icon": "sap-icon://activity-individual",
+						"sort": 50,
+						"route": "matrixconnector",
+						"text": {
+							"de" : "Matrix Connector",
+							"en" : "Matrix Connector"
+						}
+					},
+					"target": [
+						"master",
+						"detail"
+					]
+				},
+				{
+					"pattern": "matrixconnector/action/add",
+					"name": "add",
+					"navigationItem": {
+						"id": "c2111f8e-856f-4132-bcc9-1dc49d015713",
+						"parent": "1db12ecd-ce18-4b4d-90b4-fe26cdc665a9",
+						"topLevelItem": false,
+						"sort": 60,
+						"route": "matrixconnector/action/add",
+						"text": {
+							"de" : "Matrix Account hinzufügen",
+							"en" : "Add Matrix Account"
+						}
+					},
+					"target": [
+						"master",
+						"detail"
+					]
+				},
+				{
+					"pattern": "matrixconnector/{identity}/{layout}",
+					"name": "detail",
+					"target": [
+						"master",
+						"detail"
+					]
+				}
+			],
+			"targets": {
+				"master": {
+					"viewName": "Master",
+					"controlAggregation": "beginColumnPages"
+				},
+				"detail": {
+					"viewName": "Detail",
+					"controlAggregation": "midColumnPages"
+				}
+			}
+		}
+	}
+}

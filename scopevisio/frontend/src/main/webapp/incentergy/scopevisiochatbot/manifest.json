@@ -1,0 +1,177 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "incentergy.scopevisiochatbot",
+		"type": "application",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"Data.svc": {
+				"uri": "../../../scopevisio-chatbot-backend/Data.svc?sap-context-token=1",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			},
+			"MatrixConnector.svc": {
+				"uri": "../../../matrix-connector-backend/Data.svc?sap-context-token=1",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_fiori_3"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "incentergy.scopevisiochatbot.view.App",
+			"type": "XML",
+			"async": true
+		},
+		"dependencies": {
+			"minUI5Version": "1.68.1",
+			"libs": {
+				"sap.m": {
+				},
+				"sap.f": {
+				},
+				"sap.uxap": {
+				},
+				"sap.tnt": {
+				},
+				"sap.ui.unified": {
+				},
+				"sap.ui.layout": {
+				}
+			}
+		},
+		"config": {
+			"fullWidth": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "incentergy.scopevisiochatbot.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "Data.svc",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"MatrixConnector": {
+				"dataSource": "MatrixConnector.svc",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			}
+		},
+			"routing": {
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"viewType": "XML",
+				"viewPath": "incentergy.scopevisiochatbot.view",
+				"controlId": "fcl",
+				"transition": "slide",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "scopevisiochatbot/:layout:",
+					"name": "master",
+					"navigationItem": {
+						"id": "afe4c93b-0ed3-4912-b9c6-f1f1becc62b5",
+						"topLevelItem": true,
+						"icon": "sap-icon://activity-individual",
+						"sort": 70,
+						"route": "scopevisiochatbot",
+						"text": {
+							"de" : "ScopeVisio Connector",
+							"en" : "ScopeVisio Connector"
+						}
+					},
+					"target": [
+						"master",
+						"detail"
+					]
+				},
+				{
+					"pattern": "scopevisiochatbot/action/add",
+					"name": "add",
+					"navigationItem": {
+						"id": "8bb330af-163c-4763-a449-c346c0c6fd9b",
+						"parent": "afe4c93b-0ed3-4912-b9c6-f1f1becc62b5",
+						"topLevelItem": false,
+						"sort": 80,
+						"route": "scopevisiochatbot/action/add",
+						"text": {
+							"de" : "ScopeVisio hinzufügen",
+							"en" : "Add ScopeVisio"
+						}
+					},
+					"target": [
+						"master",
+						"detail"
+					]
+				},
+				{
+					"pattern": "scopevisiochatbot/{oauthscopevisiotoken}/{layout}",
+					"name": "detail",
+					"target": [
+						"master",
+						"detail"
+					]
+				}
+			],
+			"targets": {
+				"master": {
+					"viewName": "Master",
+					"controlAggregation": "beginColumnPages"
+				},
+				"detail": {
+					"viewName": "Detail",
+					"controlAggregation": "midColumnPages"
+				}
+			}
+		}
+	},
+	"incentergy.base.vega": [
+		{
+			"header": {
+				"title": "Potential",
+				"subTitle": "by status",
+				"status": {
+					"text": "grouped"
+				},
+				"icon": {
+					"src": "sap-icon://crm-sales"
+				}
+			},
+			"content": {
+			}
+		}
+	]
+}

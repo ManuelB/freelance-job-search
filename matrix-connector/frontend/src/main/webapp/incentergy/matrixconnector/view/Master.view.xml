@@ -1,0 +1,59 @@
+<mvc:View displayBlock="true"
+	controllerName="incentergy.matrixconnector.view.Master" height="100%"
+	xmlns="sap.m" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc">
+	<f:DynamicPage id="dynamicPageId"
+		toggleHeaderOnTitleClick="false">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>Identities}" />
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<Table id="identityTable" inset="false"
+				items="{
+						path: '/Identitys',
+						sorter: {
+							path: 'Username'
+						}
+					}"
+				class="sapFDynamicPageAlignContent" width="auto">
+				<headerToolbar>
+					<OverflowToolbar>
+						<ToolbarSpacer />
+						<SearchField search="onSearch" width="17.5rem" />
+						<OverflowToolbarButton
+							icon="sap-icon://add-competence" type="Transparent"
+							press="onAdd" />
+						<OverflowToolbarButton icon="sap-icon://add"
+							type="Transparent" press="onAdd" />
+						<OverflowToolbarButton
+							icon="sap-icon://sort" type="Transparent" press="onSort" />
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>Username}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>Domain}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation"
+						press="onListItemPress">
+						<cells>
+							<ObjectIdentifier title="{Username}"
+								text="{Id}" />
+							<Text text="{Domain}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

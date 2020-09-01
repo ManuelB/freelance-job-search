@@ -1,0 +1,3 @@
+<mvc:View xmlns="sap.f" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" controllerName="incentergy.matrixconnector.view.App" height="100%">
+	<FlexibleColumnLayout id="fcl" stateChange="onStateChanged"	layout="{Layout>/layout}" backgroundDesign="Solid"/>
+</mvc:View>
