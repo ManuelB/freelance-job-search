@@ -206,7 +206,7 @@ public class Connector {
 	public boolean joinRoom(String roomId, List<Event> eventList, StandaloneClient mxClient) {
 		log.fine("Start joining.");
 		boolean joined = false;
-		List<Event<?>> inviteEvents = eventList.stream().peek(state -> {
+		List<Event> inviteEvents = eventList.stream().peek(state -> {
 			log.fine("Event type: " + state.getType());
 		}).filter(state -> {
 			if (state instanceof RoomMember) {
@@ -218,7 +218,7 @@ public class Connector {
 			return false;
 		}).collect(Collectors.toList());
 
-		for (Event<?> state : inviteEvents) {
+		for (Event state : inviteEvents) {
 			if (state instanceof RoomEvent) {
 				log.fine("Join to room" + roomId);
 				try {
