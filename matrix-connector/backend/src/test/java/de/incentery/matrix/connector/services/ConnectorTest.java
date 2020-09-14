@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.junit.jupiter.api.Test;
 
-import de.incentery.matrix.connector.Data;
+// import de.incentery.matrix.connector.Data;
 
 class ConnectorTest {
 
@@ -14,7 +14,7 @@ class ConnectorTest {
 
 		connector.managedExecutorService = new MockedManagedExecutorService();
 
-		connector.connectIdentity(Data.getConsultingNetworkBot().getId()).get();
+		// connector.connectIdentity(Data.getConsultingNetworkBot().getId()).get();
 		
 	}
 

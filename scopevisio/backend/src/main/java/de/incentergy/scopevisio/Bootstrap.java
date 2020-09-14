@@ -14,6 +14,6 @@ public class Bootstrap {
 
 	@PostConstruct
 	public void load() {
-		em.merge(Data.getOAuthScopeVisioToken());
+		// em.merge(Data.getOAuthScopeVisioToken());
 	}
 }
