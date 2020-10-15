@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Room2Project.findByroomId", query = "SELECT r FROM Room2Project r WHERE roomId = :roomId")
+	@NamedQuery(name="Room2Project.findByroomId", query = "SELECT r FROM Room2Project r WHERE r.roomId = :roomId")
 })
 public class Room2Project {
 	@Id

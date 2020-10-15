@@ -138,6 +138,25 @@
 					]
 				},
 				{
+					"pattern": "scopevisiochatbot/action/import-sales-projects",
+					"name": "import-sales-projects",
+					"navigationItem": {
+						"id": "d0fce7b3-216c-44bd-8964-6f66d61fb175",
+						"parent": "afe4c93b-0ed3-4912-b9c6-f1f1becc62b5",
+						"topLevelItem": false,
+						"sort": 85,
+						"route": "scopevisiochatbot/action/import-sales-projects",
+						"text": {
+							"de" : "Importiere Vertriebsprojekte",
+							"en" : "Import sales projects"
+						}
+					},
+					"target": [
+						"master",
+						"detail"
+					]
+				},
+				{
 					"pattern": "scopevisiochatbot/{oauthscopevisiotoken}/{layout}",
 					"name": "detail",
 					"target": [
@@ -157,21 +176,5 @@
 				}
 			}
 		}
-	},
-	"incentergy.base.vega": [
-		{
-			"header": {
-				"title": "Potential",
-				"subTitle": "by status",
-				"status": {
-					"text": "grouped"
-				},
-				"icon": {
-					"src": "sap-icon://crm-sales"
-				}
-			},
-			"content": {
-			}
-		}
-	]
+	}
 }

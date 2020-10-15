@@ -8,8 +8,8 @@ import javax.ws.rs.core.Application;
 
 import org.eclipse.microprofile.jwt.jaxrs.JWTAuthFilter;
 
-@ApplicationPath("/ScopeVisio")
-public class ScopeVisioApplication extends Application {
+@ApplicationPath("/Scopevisio")
+public class ScopevisioApplication extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> set = new HashSet<>();

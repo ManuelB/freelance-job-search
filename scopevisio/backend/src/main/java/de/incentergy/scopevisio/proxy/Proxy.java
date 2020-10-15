@@ -9,7 +9,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Encoded;
 import javax.ws.rs.GET;
@@ -33,7 +32,7 @@ import de.incentergy.scopevisio.entities.OAuthScopeVisioToken;
 import de.incentergy.scopevisio.jms.ProjectAnswerer;
 
 @Stateless
-@Path("/")
+@Path("/{pathSegments: .*}")
 public class Proxy {
 
 	@Context
@@ -60,25 +59,21 @@ public class Proxy {
 	}
 
 	@GET
-	@Path("/{pathSegments: .*}")
 	public Response get(@Encoded @PathParam("pathSegments") final List<PathSegment> pathSegments) {
 		return builder(pathSegments).get();
 	}
 
 	@POST
-	@Path("/{pathSegments: .*}")
 	public Response post(@Encoded @PathParam("pathSegments") final List<PathSegment> pathSegments, String body) {
 		return builder(pathSegments).post(Entity.entity(body, httpHeaders.getHeaderString("Content-Type")));
 	}
 
 	@PUT
-	@Path("/{pathSegments: .*}")
 	public Response put(@Encoded @PathParam("pathSegments") final List<PathSegment> pathSegments, String body) {
 		return builder(pathSegments).put(Entity.entity(body, httpHeaders.getHeaderString("Content-Type")));
 	}
 
 	@DELETE
-	@Path("/{pathSegments: .*}")
 	public Response delete(@Encoded @PathParam("pathSegments") final List<PathSegment> pathSegments) {
 		return builder(pathSegments).delete();
 	}
