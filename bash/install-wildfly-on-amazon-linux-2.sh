@@ -23,8 +23,8 @@ sudo /opt/wildfly/bin/jboss-cli.sh
 # /subsystem=elytron/certificate-authority-account=myLetsEncryptAccount:add(alias=letsEncrypt,key-store=accountsKS,contact-urls=[mailto:webmaster@incetergy.de])
 # /subsystem=elytron/key-store=serverKS:obtain-certificate(alias=server,domain-names=[bot.incentergy.de],certificate-authority-account=myLetsEncryptAccount,agree-to-terms-of-service)
 sudo service wildfly start
-git clone https://github.com/ManuelB/scopevisio-chatbot.git
-cd scopevisio-chatbot 
+git clone https://github.com/ManuelB/freelance-project-search.git
+cd freelance-project-search
 git submodule init
 git submodule update
 echo "export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))" >> ~/.bashrc

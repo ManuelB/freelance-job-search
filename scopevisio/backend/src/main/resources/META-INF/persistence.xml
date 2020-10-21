@@ -8,7 +8,7 @@
 		<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"
-				value="drop-and-create" />
+				value="create" />
 			<!-- Bind entity manager factory to JNDI at java:jboss/competenceEntityManagerFactory -->
 			<property name="jboss.entity.manager.factory.jndi.name"
 				value="java:/scopevisiochatbotEntityManagerFactory" />
