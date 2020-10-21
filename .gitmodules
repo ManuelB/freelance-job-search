@@ -1,6 +1,12 @@
 [submodule "base"]
 	path = base
-	url = ../javaee-openui5-multi-modules-base/
+	url = https://github.com/ManuelB/javaee-openui5-multi-modules-base.git
 [submodule "jwt-auth"]
 	path = jwt-auth
-	url = ../javaee-openui5-multi-modules-jwt-auth/
+	url = https://github.com/ManuelB/javaee-openui5-multi-modules-jwt-auth.git
+[submodule "project-offer"]
+	path = project-offer
+	url = https://github.com/ManuelB/project-offer.git
+[submodule "project-application-tracker"]
+	path = project-application-tracker
+	url = https://github.com/ManuelB/project-application-tracker.git

@@ -12,5 +12,7 @@
     <module>bot-jms-resources</module>
     <module>scopevisio</module>
     <module>matrix-connector</module>
+    <module>project-offer</module>
+    <module>project-application-tracker</module>
   </modules>
 </project>
