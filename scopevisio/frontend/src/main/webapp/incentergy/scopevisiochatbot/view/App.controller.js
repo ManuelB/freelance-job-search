@@ -35,7 +35,7 @@ sap.ui.define([
 					      {
 					        "field":"customBoolean1",
 						 	"value": true,
-						 	"operator": "equals"
+						 	"operator": "notequal"
 					      }
 					   ]
 					}),
