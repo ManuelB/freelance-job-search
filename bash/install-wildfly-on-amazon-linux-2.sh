@@ -32,4 +32,32 @@ wget https://bintray.com/sobolevn/rpm/rpm -O bintray-sobolevn-rpm.repo
 sudo mv bintray-sobolevn-rpm.repo /etc/yum.repos.d/
 sudo yum install git-secret
 mvn install
+sudo amazon-linux-extras install postgresql11
+sudo yum -y install postgresql-server
+sudo service postgresql initdb
+sudo /sbin/chkconfig --levels 235 postgresql on
+# Change thw following lines in /var/lib/pgsql/data/pg_hba.conf
+#
+# host    all             all             127.0.0.1/32            ident
+# host    all             all             ::1/128                 ident
+#
+# TO:
+#
+# host    all             all             127.0.0.1/32            md5
+# host    all             all             ::1/128                 md5
+sudo service postgresql start
+sudo su postgres
+psql -c "CREATE DATABASE freelancesearch;"
+psql -c "CREATE USER freelancesearch WITH PASSWORD 'changeme';"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE freelancesearch TO freelancesearch;"
+exit
+sudo su
+cd /tmp
+wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.18/postgresql-42.2.18.jar
+/opt/wildfly/bin/jboss-cli.sh --connect controller=127.0.0.1
+module add --name=org.postgresql --resources=/tmp/postgresql-42.2.18.jar --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgresql",driver-class-name=org.postgresql.Driver)
+data-source remove --name=ExampleDS
+data-source add --jndi-name=java:jboss/datasources/ExampleDS --name=ExampleDS --connection-url=jdbc:postgresql://localhost:5432/freelancesearch --driver-name=postgres --user-name=freelancesearch --password=changeme
+reload
 find . -name "*.war" | sudo args cp -t /opt/wildfly/standalone/deployments/
