@@ -34,6 +34,7 @@ sudo yum install git-secret
 mvn install
 sudo amazon-linux-extras install postgresql11
 sudo yum -y install postgresql-server
+sudo yum -y install postgresql-contrib
 sudo service postgresql initdb
 sudo /sbin/chkconfig --levels 235 postgresql on
 # Change thw following lines in /var/lib/pgsql/data/pg_hba.conf
@@ -51,6 +52,12 @@ psql -c "CREATE DATABASE freelancesearch;"
 psql -c "CREATE USER freelancesearch WITH PASSWORD 'changeme';"
 psql -c "GRANT ALL PRIVILEGES ON DATABASE freelancesearch TO freelancesearch;"
 exit
+cd /var/lib/pgsql/data/
+# add pg_stat_statements in postgresql.conf https://www.postgresql.org/docs/12/pgstatstatements.html
+# shared_preload_libraries = 'pg_stat_statements'
+#
+# pg_stat_statements.max = 10000
+# pg_stat_statements.track = all
 sudo su
 cd /tmp
 wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.18/postgresql-42.2.18.jar
@@ -58,6 +65,6 @@ wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.18/postgresql
 module add --name=org.postgresql --resources=/tmp/postgresql-42.2.18.jar --dependencies=javax.api,javax.transaction.api
 /subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgresql",driver-class-name=org.postgresql.Driver)
 data-source remove --name=ExampleDS
-data-source add --jndi-name=java:jboss/datasources/ExampleDS --name=ExampleDS --connection-url=jdbc:postgresql://localhost:5432/freelancesearch --driver-name=postgres --user-name=freelancesearch --password=changeme
+data-source add --jndi-name=java:jboss/datasources/ExampleDS --name=ExampleDS --connection-url=jdbc:postgresql://localhost:5432/freelancesearch --driver-name=postgres --user-name=freelancesearch --password=changeme --validate-on-match=true --check-valid-connection-sql="select 1"
 reload
 find . -name "*.war" | sudo args cp -t /opt/wildfly/standalone/deployments/
