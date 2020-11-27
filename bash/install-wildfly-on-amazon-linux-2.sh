@@ -59,6 +59,9 @@ cd /var/lib/pgsql/data/
 # pg_stat_statements.max = 10000
 # pg_stat_statements.track = all
 sudo su
+sudo su postgres
+psql -c "CREATE EXTENSION pg_stat_statements;"
+exit
 cd /tmp
 wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.18/postgresql-42.2.18.jar
 /opt/wildfly/bin/jboss-cli.sh --connect controller=127.0.0.1
